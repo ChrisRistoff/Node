@@ -1,0 +1,15 @@
+Some text that I will output to the console
+Some radom facts:
+1. The first computer virus was created in 1983.
+2. The first computer mouse was invented by Doug Engelbart in around 1964 and was made of wood.
+3. The first computer was almost 2.5 meters high and weighed nearly 30,000kg.
+4. The first computer was invented in the 1940s by John Atanasoff and Clifford Berry.
+5. John Atanasoff is originally from Bulgaria, same country I am from.
+6. The first computer game was created in 1961 by Steve Russell and was called Spacewar.
+7. The first Operating System was created in the 1950s and was called GM-NAA I/O.
+8. The first Open Source Software was created in 1998 and was called Netscape Communicator.
+9. The first computer bug was a real bug. It was a moth that was stuck in a Harvard Mark II computer in 1947.
+10. The first website was created in 1991 by Tim Berners-Lee and was about the World Wide Web project itself.
+11. The first API was created in 2000 by Salesforce and was called the Sforce API.
+12. Node was first released in 2009 by Ryan Dahl. It was written in C++. The first version of Node was 0.1.0.
+13. Node was later rewritten in C++ and JavaScript by Ryan Dahl, Bert Belder, and Ben Noordhuis.
