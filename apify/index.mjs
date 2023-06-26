@@ -20,9 +20,16 @@ app.get('/products', (req, res) => {
 let minPrice = req.query.minPrice ? parseInt(req.query.minPrice) : 0;
 let maxPrice = req.query.maxPrice ? parseInt(req.query.maxPrice) : 100000;
 
-let filteredProducts = products.filter((product) => {
-  return product.price >= minPrice && product.price <= maxPrice;
-});
+let filteredProducts = [];
+
+for (let i = 0; i < products.length; i++) {
+  if (filteredProducts.length >= 1000) {
+    break;
+  }
+  if (products[i].price >= minPrice && products[i].price <= maxPrice) {
+    filteredProducts.push(products[i]);
+  }
+}
 
 res.json({
   total: filteredProducts.length,
