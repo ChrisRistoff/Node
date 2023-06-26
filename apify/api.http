@@ -1,4 +1,4 @@
 ### GET products
 
-GET http://localhost:8080/products?minPrice=1000&maxPrice=28000
+GET http://localhost:8080/products?minPrice=1&maxPrice=10
 Content-Type: application/json
