@@ -4,7 +4,7 @@ const app = express();
 
 const products = [];
 
-for (let i = 0; i < 99999; i++) {
+for (let i = 0; i < 4222; i++) {
   products.push({
     id: i,
     name: `Product ${i}`,
@@ -24,7 +24,7 @@ let filteredProducts = products.filter((product) => {
   return product.price >= minPrice && product.price <= maxPrice;
 });
 
-let slicedProducts = filteredProducts.slice(0, 10);
+let slicedProducts = filteredProducts.slice(0, 1000);
 
 
 res.json({
