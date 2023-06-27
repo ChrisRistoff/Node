@@ -5,6 +5,7 @@ let products = [];
 let minPrice = 0;
 let maxPricePossible = 100000;
 let maxPrice = 1;
+let equalPriceCounter = 0;
 
 async function fetchProducts(minPrice, maxPrice) {
   const res = await fetch(`${url}?minPrice=${minPrice}&maxPrice=${maxPrice}`);
@@ -17,46 +18,31 @@ async function scrapeProducts(minPrice, maxPrice) {
   if (maxPrice <= maxPricePossible) {
 
     let data = await fetchProducts(minPrice, maxPrice);
-    
-    if (data.total !== data.count) {
-      console.log("call the senior!");
-      return;
-    }
+    console.log(data);
 
-    if (data.count === 0) {
-      minPrice = maxPrice;
+    if (equalPriceCounter === 2) {
       maxPrice = maxPrice + 1;
-      await scrapeProducts(minPrice, maxPrice);
+      equalPriceCounter = 0;
+      return await scrapeProducts(minPrice, maxPrice);
     }
-    
-    if (products.length === 0) {
-      products = products.concat(data.products);
+
+    if (data.total > 1000) {
       minPrice = maxPrice;
-      maxPrice = maxPrice + 1;
-      await scrapeProducts(minPrice, maxPrice);
-    }
-
-    for (let i = 0; i < data.count ; i++) {
-      let isDuplicate = false;
-
-      for (let j = 0; j < products.length; j++) {
-        if (data.products[i] === products[j]) {
-          isDuplicate = true;
-          break;
-        }
-
-      if (!isDuplicate) {
-        products.push(data.products[i]);
+      equalPriceCounter = equalPriceCounter + 1;
+      return await scrapeProducts(minPrice, maxPrice);
+    } 
+    else {
+      for (let i = 0; i < data.count; i++) {
+          products.push(data.products[i]);
         }
       }
+      console.log(products);
+      minPrice = maxPrice;
+      maxPrice = maxPrice + 1;
+      equalPriceCounter = 0;
+      return await scrapeProducts(minPrice, maxPrice);
     }
 
-    console.log(products);
-    minPrice = maxPrice;
-    maxPrice = maxPrice + 1;
-    await scrapeProducts(minPrice, maxPrice);
-
-  }
   return products;
 }
 
