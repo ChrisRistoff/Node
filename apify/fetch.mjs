@@ -6,6 +6,7 @@ let minPrice = 0;
 let maxPricePossible = 100000;
 let maxPrice = 1;
 let equalPriceCounter = 0;
+let duplicateCounter = 0;
 
 async function fetchProducts(minPrice, maxPrice) {
   const res = await fetch(`${url}?minPrice=${minPrice}&maxPrice=${maxPrice}`);
@@ -18,7 +19,6 @@ async function scrapeProducts(minPrice, maxPrice) {
   if (maxPrice <= maxPricePossible) {
 
     let data = await fetchProducts(minPrice, maxPrice);
-    console.log(data);
 
     if (equalPriceCounter === 2) {
       maxPrice = maxPrice + 1;
@@ -33,10 +33,17 @@ async function scrapeProducts(minPrice, maxPrice) {
     } 
     else {
       for (let i = 0; i < data.count; i++) {
+        for (let j = 0; j < products.length; j++) {
+          if (data.products[i].id === products[j].id) {
+            duplicateCounter = duplicateCounter + 1;
+          }
+        }
+        if (duplicateCounter === 0) {
           products.push(data.products[i]);
         }
+        duplicateCounter = 0;
       }
-      console.log(products);
+    }
       minPrice = maxPrice;
       maxPrice = maxPrice + 1;
       equalPriceCounter = 0;
